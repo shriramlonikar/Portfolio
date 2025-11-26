@@ -1,7 +1,13 @@
 import React from 'react'
+import { motion as MOTION } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useState } from 'react'
+import emailjs from "@emailjs/browser";
+import { FiX } from "react-icons/fi";
+
 
 const ContactSection = () => {
 
@@ -10,6 +16,36 @@ const ContactSection = () => {
     const sectionRef = useRef(null)
     const initialTextRef = useRef(null)
     const finalTextRef = useRef(null)
+
+
+    // ✅ Added useRef for EmailJS sendForm()
+    const formRef = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            "service_e4aolw3",
+            "template_g5hz3tl",
+
+            // ✅ FIX: send the form element instead of JS object
+            formRef.current,
+
+            "zO5nseOA7n9AKQZ9Q",
+        )
+            .then(() => {
+                alert("Message Sent Successfully!");
+                closeContactForm();
+            })
+            .catch((err) => {
+                console.error(err);
+                alert("Failed to send message.");
+            });
+    };
+
+    const [contactFormOpen, setContactFormOpen] = useState(false);
+        const openContactForm = () => setContactFormOpen(true);
+        const closeContactForm = () => setContactFormOpen(false);
 
     useEffect(() => {
         // Register GSAP plugins
@@ -101,6 +137,7 @@ const ContactSection = () => {
 
   return (
     <section
+    id='contact'
     ref={sectionRef}
     className='flex items-center justify-center bg-black relative'
     style={{overscrollBehavior: "none"}}
@@ -132,13 +169,94 @@ const ContactSection = () => {
                     Full-Stack developer specialized in crafting robust, modren, responsive web interfaces using React, Tailwind CSS, and advanced UI animation techniques with neat and clean backend using Nodejs, FastAPI. Passionate in Machine Learning, Deep Learning, GenAI to build modern and intelligent solutions. 
                 </p>
 
-                <button className='px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap'>
+                <button 
+                onClick={openContactForm}
+                className='px-10 py-2 rounded-xl bg-black hover:bg-white hover:text-black transition-all duration-500 scale-[0.1] absolute sm:mt-9 mt-7 text-nowrap'>
                     Contact Me
                 </button>
 
             </div>
 
         </div>
+
+        {/* Contact Form */}
+            <AnimatePresence>
+                {contactFormOpen && (
+                    <MOTION.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="fixed inset-0 bg-black/50 background-blur-sm z-50 flex items-center justify-center p-4"
+                    >
+                        <MOTION.div
+                            initial={{ scale: 0.8, opacity: 0, y: 30 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.8, opacity: 0, y: 30 }}
+                            transition={{
+                                type: "spring",
+                                damping: 30,
+                                stiffness: 200,
+                                duration: 0.8
+                            }}
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6">
+
+                            <div className="flex justify-between items-center mb-4">
+                                <h1 className="text-2xl font-bold text-gray-300">
+                                    Get In Touch
+                                </h1>
+
+                                <button onClick={closeContactForm}>
+                                    <FiX className="w-5 h-5 text-gray-300 font-extrabold" />
+                                </button>
+                            </div>
+
+                            {/* Input Forms */}
+                            <form ref={formRef} className="space-y-4" onSubmit={sendEmail}>
+
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                                        Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Your Email"
+                                        className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                                        Message
+                                    </label>
+                                    <textarea
+                                        rows="4"
+                                        id="message"
+                                        name="message"
+                                        placeholder="Your Message"
+                                        className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700"
+                                    />
+                                </div>
+
+                                <MOTION.button
+                                    type="submit"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:shadow-violet-600/50">
+                                    Send Message
+                                </MOTION.button>
+
+                            </form>
+
+                        </MOTION.div>
+                    </MOTION.div>
+                )}
+                {/* <MOTION.div>
+
+                </MOTION.div> */}
+            </AnimatePresence>
 
     </section>
   )

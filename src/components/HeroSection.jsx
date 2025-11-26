@@ -1,15 +1,14 @@
-import { section } from 'framer-motion/client'
-import { motion } from 'framer-motion'
+import { motion as MOTION } from "framer-motion";
 import Spline from '@splinetool/react-spline'
 import React from 'react'
 
 const HeroSection = () => {
   return (
-    <section className='h-screen bg-gradient-to-b from-violet-900 to-black flex xl:flex-row flex-col-reverse items-center justify-between lg:px-24 px-10 relative overflow-hidden'>
+    <section id="home" className='h-screen bg-gradient-to-b from-violet-900 to-black flex xl:flex-row flex-col-reverse items-center justify-between lg:px-24 px-10 relative overflow-hidden'>
 
         {/* Left Section */}
         <div className='z-40 xl:mb-0 mb-[20%]'>
-            <motion.h1 
+            <MOTION.h1 
             initial={{opacity:0, y:80}}
             animate={{opacity:1, y:0}}
             transition={{
@@ -21,8 +20,8 @@ const HeroSection = () => {
             }}
             className='text-5xl md:text-7xl lg:text-8xl font-bold z-10 mb-6'>
                 Building Fast <br /> Reliable Results
-            </motion.h1>
-            <motion.p 
+            </MOTION.h1>
+            <MOTION.p 
             initial={{opacity:0, y:80}}
             animate={{opacity:1, y:0}}
             transition={{
@@ -34,7 +33,7 @@ const HeroSection = () => {
             }}
             className='tex-xl md:text-1xl lg:text-2xl text-purple-200 max-w-2xl'>
                 I deliver robust, production-ready websites and web apps with speed and precision. Every project is backed by clean code, clear communication and a commitement to getting it done, on time.
-            </motion.p>
+            </MOTION.p>
         </div>
 
         {/* Right Section */}

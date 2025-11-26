@@ -1,5 +1,4 @@
-import { footer } from 'framer-motion/client'
-import React from 'react'
+
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi'
 
 const Footer = () => {
@@ -19,12 +18,12 @@ const Footer = () => {
                         Connect
                     </h3>
                     <div className='flex space-x-4'>
-                        <a className='text-gray-700 hover:text-violet-400 transition-colors' href="#">
+                        <a className='text-gray-700 hover:text-violet-400 transition-colors' href="https://github.com/shriramlonikar">
                             <FiGithub className='w-5 h-5'/>
-                        </a><a className='text-gray-700 hover:text-violet-400 transition-colors' href="#">
+                        </a>
+                        <a className='text-gray-700 hover:text-violet-400 transition-colors' href="https://www.linkedin.com/in/shriram-lonikar-b1a546333/">
                             <FiLinkedin className='w-5 h-5'/>
-                        </a><a className='text-gray-700 hover:text-violet-400 transition-colors' href="#">
-                            <FiTwitter className='w-5 h-5'/>
+  
                         </a>
                     </div>
                 </div>

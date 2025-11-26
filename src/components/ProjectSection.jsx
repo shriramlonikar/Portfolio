@@ -16,22 +16,26 @@ const ProjectSection = () => {
         {
             id: 1,
             title: "CitiSolve",
-            imgSrc: "/images/CitiSolve.png"
+            imgSrc: "/images/CitiSolve.png",
+            projectTag: "https://github.com/shriramlonikar/CitiSolve_Frontend"
         },
         {
             id: 2,
             title: "LearnNova",
-            imgSrc: "/images/LearnNova.png"
+            imgSrc: "/images/LearnNova.png",
+            projectTag: "https://github.com/shriramlonikar/LearnNova"
         },
         {
             id: 3,
             title: "Resume_Parser",
-            imgSrc: "/images/Resume_Parser.png"
+            imgSrc: "/images/Resume_Parser.png",
+            projectTag: "https://github.com/shriramlonikar/Resume_Parser_frontend"
         },
         {
             id: 4,
             title: "NewsMonkey",
-            imgSrc: "/images/NewsMonkey.png"
+            imgSrc: "/images/NewsMonkey.png",
+            projectTag: "https://github.com/shriramlonikar/NewsMonkay"
         }
     ]
 
@@ -143,7 +147,7 @@ const ProjectSection = () => {
         // Image animation
         // Animate each image pannel
         const panels = gsap.utils.toArray(".panel")
-        panels.forEach((panel, i) => {
+        panels.forEach((panel) => {
             const image = panel.querySelector(".project-image")
             const imageTitle = panel.querySelector(".project-title")
 
@@ -170,9 +174,10 @@ const ProjectSection = () => {
     }, [ProjectImage.length])
 
   return (
+    <div id="projects">
     <section
     ref={sectionRef}
-    id='hoirzontal-section'
+    class='hoirzontal-section'
     className='relative py-20 bg-white overflow-hidden'
     >
 
@@ -194,8 +199,13 @@ const ProjectSection = () => {
 
                             <img className="project-image max-w-full max-h-full rounded-2xl object-cover" src={project.imgSrc} alt="Project-img"/>
 
-                            <h2 className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-6 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                            <h2
+                            className="project-title flex items-center gap-3 md:text-3xl text-sm md:font-bold text-black mt-3 z-50 text-nowrap hover:text-gray-400 transition-colors duration-300 cursor-pointer">
+                                <a
+                                className="flex items-center gap-3"
+                                href={project.projectTag}>
                                 {project.title} <SlShareAlt/>
+                                </a>
                             </h2>
 
                         </div>
@@ -207,6 +217,7 @@ const ProjectSection = () => {
         </div>
 
     </section>
+    </div>
   )
 }
 
