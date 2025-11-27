@@ -143,27 +143,21 @@ const Header = () => {
                 transition={{ duration: 0.5 }}
                 className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5">
                 <nav className="flex flex-col space-y-3">
-                    {/* {["Home", "About", "Projects", "Contact"].map((item) => (
-                        <a onClick={toggleMenu} className="text-gray-300 font-medium py-2" key={item} href="#">
+                    {["Home", "About", "Projects", "Contact"].map((item) => (
+                        <a onClick={toggleMenu} className="text-gray-300 font-medium py-2" key={item} href={`#${item.toLowerCase()}`}>
                             {item}
                         </a>
-                    ))} */}
-                    <a onClick={toggleMenu} className="text-gray-300 font-medium py-2" href="AboutSec"> About
-                        </a>
+                    ))}
                 </nav>
 
                 <div className="pt-4 border-t border-gray-400 dark:border-gray-700">
                     <div className="flex space-x-5">
 
-                        <a href="#">
+                        <a href="https://github.com/shriramlonikar">
                             <FiGithub className="h-5 w-5 text-gray-300" />
                         </a>
 
-                        <a href="#">
-                            <FiTwitter className="h-5 w-5 text-gray-300" />
-                        </a>
-
-                        <a href="#">
+                        <a href="https://www.linkedin.com/in/shriram-lonikar-b1a546333/">
                             <FiLinkedin className="h-5 w-5 text-gray-300" />
                         </a>
                     </div>
