@@ -1,6 +1,6 @@
 
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi'
-
+//  Footer
 const Footer = () => {
   return (
     <footer className='bg-black text-white py-16 px-6 mt-40'>
